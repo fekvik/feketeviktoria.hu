@@ -1,109 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Viktoria Fekete – E-Portfolio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<title>Viktoria Fekete – E-Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <style>
-    :root {
-      --accent: #c2628b;
-      --accent-soft: #f6dce8;
-      --text-main: #333;
-      --text-soft: #666;
-    }
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-    body {
-      margin:0;
-      font-family:"Poppins",sans-serif;
-      color:var(--text-main);
-      overflow-x:hidden;
-      background: #ffeef7;
-      animation: bgmove 12s infinite alternate ease-in-out;
-      background-size: 300% 300%;
-    }
+<style>
+/* ------------------------------
+   COLOR PALETTE & GLOBAL STYLE
+-------------------------------*/
+:root {
+  --accent: #c2628b;
+  --accent-soft: #f6dce8;
+  --text-main: #333;
+  --text-soft: #666;
+}
 
-    @keyframes bgmove {
-      0% { background: radial-gradient(circle at 20% 20%, #ffe5f2, #f9e6f9, #fdf3ff); }
-      50% { background: radial-gradient(circle at 80% 30%, #ffedf6, #f3e3fb, #fdf7ff); }
-      100% { background: radial-gradient(circle at 50% 80%, #ffe9f4, #f6e4fa, #fff4ff); }
-    }
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
+  background: radial-gradient(circle at 30% 20%, #ffe3f1, #f9e9fb, #fff4ff);
+  animation: pastelGlow 14s infinite alternate ease-in-out;
+  background-size: 300% 300%;
+  position: relative;
+}
 
-    .page { max-width: 960px; margin:0 auto; padding:20px; }
+/* Animated pastel background */
+@keyframes pastelGlow {
+  0% { background: radial-gradient(circle at 20% 20%, #ffe9f4, #f6e5fa, #fff3ff); }
+  50% { background: radial-gradient(circle at 80% 30%, #ffeef8, #f4e4fb, #fff4ff); }
+  100% { background: radial-gradient(circle at 50% 80%, #ffeaf2, #f8e4ff, #fff8ff); }
+}
 
-    .topbar {
-      display:flex; justify-content:space-between; align-items:center;
-      padding:10px 5px; margin-bottom:12px;
-    }
-    .logo-circle {
-      width:32px; height:32px; border-radius:50%;
-      background:var(--accent-soft);
-      display:flex; align-items:center; justify-content:center;
-      color:var(--accent); font-weight:600;
-    }
-    .nav a {
-      margin-left:12px; text-decoration:none;
-      color:var(--text-soft);
-    }
-    .nav a:hover { color:var(--accent); }
+/* Floating bokeh dots */
+.bokeh {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  background: #ffffff70;
+  border-radius: 50%;
+  animation: floatUp 12s infinite ease-in-out;
+  filter: blur(3px);
+}
 
-    .card {
-      background:white;
-      padding:25px;
-      border-radius:18px;
-      box-shadow:0px 10px 25px rgba(0,0,0,0.08);
-      backdrop-filter: blur(4px);
-    }
+@keyframes floatUp {
+  0% { transform: translateY(0) scale(1); opacity: .7; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-600px) scale(1.6); opacity: 0; }
+}
 
-    .hero { display:flex; flex-wrap:wrap; gap:20px; align-items:center; }
-    .profile-photo {
-      width:260px; height:260px; border-radius:22px; object-fit:cover;
-      border:4px solid var(--accent-soft); box-shadow:0 12px 25px rgba(0,0,0,0.12);
-    }
+/* ------------------------------
+           PAGE LAYOUT
+-------------------------------*/
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+}
 
-    h2.sec-title {
-      color:var(--accent);
-      font-size:1.2rem;
-      margin-bottom:8px;
-    }
+/* Top navigation bar */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 5px;
+  margin-bottom: 12px;
+}
 
-    /* Contact Form */
-    .contact-form {
-      margin-top:15px;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-    }
-    .contact-form input, .contact-form textarea {
-      padding:10px;
-      border-radius:10px;
-      border:1px solid #ddd;
-      font-family:"Poppins";
-    }
-    .contact-form button {
-      padding:10px;
-      background:var(--accent);
-      color:white;
-      border:none;
-      border-radius:10px;
-      cursor:pointer;
-      font-weight:500;
-    }
-    .contact-form button:hover {
-      background:#a84f73;
-    }
+.logo-circle {
+  width: 34px;
+  height: 34px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-radius: 50%;
+  font-size: .9rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  </style>
+.nav a {
+  margin-left: 12px;
+  text-decoration: none;
+  color: var(--text-soft);
+  font-size: .9rem;
+}
+.nav a:hover { color: var(--accent); }
+
+/* Main card */
+.card {
+  background: #fff;
+  padding: 26px;
+  border-radius: 20px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+  backdrop-filter: blur(5px);
+}
+
+/* Hero */
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  align-items: center;
+}
+
+/* Profile photo */
+.profile-photo {
+  width: 260px;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 22px;
+  border: 4px solid var(--accent-soft);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.14);
+}
+
+/* Section titles */
+h2.sec-title {
+  color: var(--accent);
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+h2.sec-title::before {
+  content:"";
+  width: 8px;
+  height: 8px;
+  background: var(--accent-soft);
+  border-radius: 50%;
+}
+
+/* Logos */
+.logo-row img {
+  height: 40px;
+  width: auto;
+  margin-right: 20px;
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,0.15));
+}
+
+/* Contact form */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 500px;
+}
+.contact-form input, .contact-form textarea {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-family: "Poppins";
+}
+.contact-form button {
+  padding: 10px;
+  background: var(--accent);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+}
+.contact-form button:hover { background:#a84f73; }
+
+</style>
 </head>
 
 <body>
+
+<!-- Soft floating bokeh dots -->
+<div class="bokeh" style="left:10%; animation-delay:0s;"></div>
+<div class="bokeh" style="left:30%; animation-delay:2s;"></div>
+<div class="bokeh" style="left:50%; animation-delay:4s;"></div>
+<div class="bokeh" style="left:70%; animation-delay:1s;"></div>
+<div class="bokeh" style="left:85%; animation-delay:3s;"></div>
+
 <div class="page">
 
+  <!-- Top Navigation -->
   <div class="topbar">
-    <div style="display:flex; align-items:center; gap:8px;">
+    <div style="display:flex;align-items:center;gap:8px;">
       <div class="logo-circle">BSU</div>
       <span>Business & Management</span>
     </div>
@@ -117,24 +198,26 @@
 
   <div class="card">
 
+    <!-- HERO -->
     <header class="hero" id="about">
       <div>
         <h1 style="margin:0; font-size:1.9rem;">Viktoria Fekete</h1>
         <p>Business & Management Student · Working Professional</p>
-        <a href="CV ViktoriaFekete[1].docx" style="
-           display:inline-block; margin-top:10px;
-           background:var(--accent); color:white;
-           padding:10px 16px; border-radius:8px;
-           text-decoration:none;">
+
+        <a href="CV ViktoriaFekete[1].docx" 
+           style="display:inline-block;margin-top:10px;background:var(--accent);color:white;padding:10px 16px;border-radius:8px;text-decoration:none;font-weight:500;">
            ⬇ Download CV
         </a>
+
         <p style="margin-top:8px;">📍 Dartford, Kent</p>
       </div>
 
+      <!-- Photo -->
       <img src="viktoria-photo.jpg" class="profile-photo">
     </header>
 
-    <section style="margin-top:10px;">
+    <!-- MESSAGE FORM -->
+    <section style="margin-top:20px;">
       <h2 class="sec-title">Send a Message</h2>
       <form class="contact-form">
         <input type="text" placeholder="Your Name">
@@ -144,26 +227,32 @@
       </form>
     </section>
 
-    <section id="logos">
+    <!-- LOGOS -->
+    <section>
       <h2 class="sec-title">Places I Have Worked & Studied</h2>
-      <div style="display:flex; gap:20px; flex-wrap:wrap; align-items:center; margin-bottom:15px;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Aldi_2017_logo.svg" style="height:40px;">
-        <img src="https://upload.wikimedia.org/wikipedia/en/f/f1/PizzaExpress_logo.svg" style="height:40px;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/HiltonHotelsLogo2010.png" style="height:40px;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f7/Bath_Spa_University_logo.svg" style="height:40px;">
+      <div class="logo-row">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Aldi_2017_logo.svg">
+        <img src="https://upload.wikimedia.org/wikipedia/en/f/f1/PizzaExpress_logo.svg">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/HiltonHotelsLogo2010.png">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f7/Bath_Spa_University_logo.svg">
       </div>
     </section>
 
+    <!-- EXPERIENCE -->
     <section id="experience">
       <h2 class="sec-title">Experience</h2>
+
       <p><strong>Shop Assistant – ALDI</strong> (2022–Present)</p>
       <ul><li>Helping customers, till work, store organisation.</li></ul>
+
       <p><strong>Multiple Role – Pizza Express</strong> (2007–Present)</p>
       <ul><li>Kitchen leadership, food quality, team support.</li></ul>
+
       <p><strong>Housekeeping Supervisor – Hilton Hotel</strong> (2007–2012)</p>
       <ul><li>Team supervision, room standards, training.</li></ul>
     </section>
 
+    <!-- SKILLS -->
     <section id="skills">
       <h2 class="sec-title">Skills</h2>
       <ul>
@@ -174,9 +263,10 @@
       </ul>
     </section>
 
+    <!-- CONTACT -->
     <section id="contact">
       <h2 class="sec-title">Contact</h2>
-      <p><strong>LinkedIn:</strong> 
+      <p><strong>LinkedIn:</strong>
         <a href="https://www.linkedin.com/in/vikt%C3%B3ria-fekete-3a4878359/" target="_blank">
           Viktoria Fekete – LinkedIn
         </a>
@@ -184,7 +274,7 @@
     </section>
 
   </div>
-
 </div>
+
 </body>
 </html>
